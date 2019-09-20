@@ -5,12 +5,19 @@ import argparse as ap
 
 # Function to calculate the mean of a integer vector
 def calcMean(val):
+    if val is None:
+        raise TypeError("calcMean: Empty input")
+        sys.exist(1)
     return (sum(val)/len(val))
 
 
 # Function to calculate the stdard deviation of a integer vector
-def calcStdev(val, mean_in):
-    return math.sqrt(sum([(mean_in-x)**2 for x in val]) / len(val))
+def calcStdev(val):
+    if val is None:
+        raise TypeError("calcStdev: Empty input")
+        sys.exist(1)
+    mean = calcMean(val)
+    return math.sqrt(sum([(mean-x)**2 for x in val]) / len(val))
 
 
 # Parsing arguments using argparse
@@ -71,7 +78,7 @@ def main():
         raise Exception('None of the values are valid for calculation')
     else:
         mean = calcMean(V)
-        stdev = calcStdev(V, mean)
+        stdev = calcStdev(V)
 
     # Return the results
     print('mean:', mean)
